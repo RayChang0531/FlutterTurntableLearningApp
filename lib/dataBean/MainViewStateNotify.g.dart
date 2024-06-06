@@ -7,7 +7,7 @@ part of 'MainViewStateNotify.dart';
 // **************************************************************************
 
 String _$mainViewStateNotifyHash() =>
-    r'99681751b2538b08dc8c4884e2b19d9d4c027d1b';
+    r'1cecf6bb551ecf95dae98d2dc2ae3aea0bfc70a0';
 
 /// See also [MainViewStateNotify].
 @ProviderFor(MainViewStateNotify)
