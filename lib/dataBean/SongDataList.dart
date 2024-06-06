@@ -5,7 +5,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'SongDataList.freezed.dart';
 part 'SongDataList.g.dart';
 
-//反方向的鐘 半獸人 上海1943 懦夫 三年二班 龍捲風 安靜
+//反方向的鐘 半獸人 上海1943 懦夫 三年二班 龍捲風 安靜 愛在西元前 蝸牛
 
 @riverpod
 class SongDataList extends _$SongDataList{

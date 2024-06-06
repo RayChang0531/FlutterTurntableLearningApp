@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_turntable_learning_app/dataBean/MainViewStateNotify.dart';
 
 import '../dataBean/SongDataList.dart';
 import '../widget/TriangleWidget.dart';
@@ -20,11 +21,18 @@ class _MainPageState extends ConsumerState<MainPage>
   late AnimationController _angleController;
   var _angle = 0.0;
   var _prizeResult = 0.0;
-  var _currentIndex = -1;
+
+  final _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ///获取输入框焦点
+      FocusScope.of(context).requestFocus(_focusNode);
+    });
+
     _angleController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 3000),
@@ -45,74 +53,88 @@ class _MainPageState extends ConsumerState<MainPage>
   @override
   Widget build(BuildContext context) {
     List<SongData> songDataList = ref.watch(songDataListProvider);
+    MainViewState mainViewState = ref.watch(mainViewStateNotifyProvider);
+
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 30, 10, 35),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ConstrainedBox(
-              constraints: const BoxConstraints.expand(height: 35),
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  const Text(
-                    "Flutter 大轉盤",
-                    style: TextStyle(
-                      fontSize: 25,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  Positioned(
-                      right: 10,
-                      child: TextButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, '/setting_page')
-                                .then((dynamic isChange) {
-                              if (isChange is bool && isChange) {
-                                _currentIndex = -1;
-                              }
-                            });
-                          },
-                          child: const Text(
-                            "設定",
-                            style: TextStyle(fontSize: 20),
-                            textAlign: TextAlign.center,
-                          ))),
-                ],
-              ),
-            ),
-            Stack(
-              alignment: Alignment.topCenter,
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(10, 50, 10, 35),
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Transform.rotate(
-                  angle: _angle * (pi * 2) - _prizeResultPi,
-                  child: TurntableWidget(songDataList),
+                ConstrainedBox(
+                  constraints: const BoxConstraints.expand(height: 35),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      TextField(
+                        focusNode: _focusNode,
+                        decoration: const InputDecoration(
+                          hintText: "Flutter 大輪盤",
+                          hintStyle: TextStyle(
+                            fontSize: 25,
+                          ),
+                        ),
+                        onEditingComplete: () {
+                          _focusNode.unfocus();
+                        },
+                        style: const TextStyle(
+                          fontSize: 25,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Positioned(
+                          right: 10,
+                          child: TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/setting_page');
+                              },
+                              child: const Text(
+                                "設定",
+                                style: TextStyle(fontSize: 20),
+                                textAlign: TextAlign.center,
+                              ))),
+                    ],
+                  ),
                 ),
-                Trianglewidget(),
+                Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Transform.rotate(
+                      angle: _angle * (pi * 2) - _prizeResultPi,
+                      child: TurntableWidget(songDataList),
+                    ),
+                    Trianglewidget(),
+                  ],
+                ),
+                ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            WidgetStateProperty.all(Colors.redAccent),
+                        elevation: WidgetStateProperty.all(20),
+                        shape: WidgetStateProperty.all(
+                          const CircleBorder(
+                              side: BorderSide(color: Colors.redAccent)),
+                        )),
+                    onPressed: () {
+                      if (mainViewState.currentIndex != -1) {
+                        ref
+                            .read(songDataListProvider.notifier)
+                            .removeSongData(mainViewState.currentIndex);
+                      }
+                      goDraw();
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        "GO",
+                        style: TextStyle(fontSize: 70, color: Colors.white60),
+                      ),
+                    )),
               ],
             ),
-            ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: WidgetStateProperty.all(Colors.redAccent),
-                    elevation: WidgetStateProperty.all(20),
-                    shape: WidgetStateProperty.all(
-                      const CircleBorder(
-                          side: BorderSide(color: Colors.redAccent)),
-                    )),
-                onPressed: () {
-                  if (_currentIndex != -1) {
-                    ref
-                        .read(songDataListProvider.notifier)
-                        .removeSongData(_currentIndex);
-                  }
-                  goDraw();
-                },
-                child: Padding(padding: EdgeInsets.all(10),child: const Text("GO",style: TextStyle(fontSize: 70,color: Colors.white60),),)),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   void goDraw() async {
@@ -123,7 +145,7 @@ class _MainPageState extends ConsumerState<MainPage>
     }
     var index = Random().nextInt(songDataList.length);
     print("Random index:$index");
-    _currentIndex = index;
+    ref.read(mainViewStateNotifyProvider.notifier).updateCurrentIndex(index);
     _prizeResult = (index / (songDataList.length)) + _midTweenDouble;
     _angleController.forward(from: 0);
   }

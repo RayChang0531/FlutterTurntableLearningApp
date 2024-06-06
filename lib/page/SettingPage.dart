@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../dataBean/MainViewStateNotify.dart';
 import '../dataBean/SongDataList.dart';
 
 class SettingPage extends ConsumerWidget {
@@ -71,7 +72,10 @@ class SettingPage extends ConsumerWidget {
               child: TextButton(
                   onPressed: () {
                     FocusScope.of(context).unfocus();
-                    Navigator.pop(context, _isChange);
+                    if(_isChange){
+                      ref.read(mainViewStateNotifyProvider.notifier).resetCurrentIndex();
+                    }
+                    Navigator.pop(context);
                   },
                   child: const Text("完成")),
             )
