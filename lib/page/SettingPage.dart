@@ -6,11 +6,6 @@ import '../dataBean/SongDataList.dart';
 
 class SettingPage extends ConsumerWidget {
   bool _isChange = false;
-  List<Color> colors = [
-    Colors.deepOrangeAccent,
-    Colors.lightBlueAccent,
-    Colors.amber
-  ];
   var myController = TextEditingController();
 
   @override
@@ -24,7 +19,7 @@ class SettingPage extends ConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const Text(
-              "請輸入轉盤項目",
+              "設定",
               style: TextStyle(fontSize: 20),
             ),
             Expanded(
@@ -55,15 +50,15 @@ class SettingPage extends ConsumerWidget {
                     child: TextField(
                       controller: myController,
                       onEditingComplete: () {
-                        addNewData(ref, songDataList);
+                        addNewData(ref);
                       },
                     ),
                   ),
                   TextButton(
                       onPressed: () {
-                        addNewData(ref, songDataList);
+                        addNewData(ref);
                       },
-                      child: const Text("新增"))
+                      child: const Text("新增項目"))
                 ],
               ),
             ),
@@ -72,8 +67,10 @@ class SettingPage extends ConsumerWidget {
               child: TextButton(
                   onPressed: () {
                     FocusScope.of(context).unfocus();
-                    if(_isChange){
-                      ref.read(mainViewStateNotifyProvider.notifier).resetCurrentIndex();
+                    if (_isChange) {
+                      ref
+                          .read(mainViewStateNotifyProvider.notifier)
+                          .resetCurrentIndex();
                     }
                     Navigator.pop(context);
                   },
@@ -85,26 +82,12 @@ class SettingPage extends ConsumerWidget {
     );
   }
 
-  void addNewData(WidgetRef ref, List<SongData> songDataList) async {
+  void addNewData(WidgetRef ref) async {
     if (myController.text.isNotEmpty) {
       _isChange = true;
-      ref.read(songDataListProvider.notifier).addSongData(SongData(
-          id: songDataList.length + 1,
-          text: myController.text,
-          color: colors[getColorIndex(ref.read(songDataListProvider))]));
+      print("text: ${myController.text}");
+      ref.read(songDataListProvider.notifier).addSongs(myController.text);
       myController.clear();
     }
-  }
-
-  int getColorIndex(List<SongData> songDataList) {
-    if (songDataList.isEmpty) {
-      return 0;
-    }
-
-    final index = colors.indexOf(songDataList.last.color);
-    if (index == colors.length - 1) {
-      return 1;
-    }
-    return index + 1;
   }
 }

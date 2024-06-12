@@ -56,9 +56,8 @@ class _MainPageState extends ConsumerState<MainPage>
     MainViewState mainViewState = ref.watch(mainViewStateNotifyProvider);
 
     return Scaffold(
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(10, 50, 10, 35),
-          child: Expanded(
+        body: Padding(
+          padding: EdgeInsets.fromLTRB(10, 30, 10, 35),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -67,17 +66,8 @@ class _MainPageState extends ConsumerState<MainPage>
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      TextField(
-                        focusNode: _focusNode,
-                        decoration: const InputDecoration(
-                          hintText: "Flutter 大輪盤",
-                          hintStyle: TextStyle(
-                            fontSize: 25,
-                          ),
-                        ),
-                        onEditingComplete: () {
-                          _focusNode.unfocus();
-                        },
+                      Text(
+                        "Flutter 大輪盤",
                         style: const TextStyle(
                           fontSize: 25,
                         ),
@@ -133,8 +123,7 @@ class _MainPageState extends ConsumerState<MainPage>
                     )),
               ],
             ),
-          ),
-        ));
+          ),);
   }
 
   void goDraw() async {

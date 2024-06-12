@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TriangleWidget extends CustomPainter {
+class TriangleDrawPointer extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final double width = size.width;
