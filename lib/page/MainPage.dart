@@ -94,7 +94,7 @@ class _MainPageState extends ConsumerState<MainPage>
                       angle: _angle * (pi * 2) - _prizeResultPi,
                       child: TurntableWidget(songDataList),
                     ),
-                    Trianglewidget(),
+                    TriangleWidget(),
                   ],
                 ),
                 ElevatedButton(

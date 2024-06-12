@@ -941,3 +941,66 @@ at:
 #8      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:171:22)
 <asynchronous suspension>
 
+The request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+The environment "sdk" has incompatible version constraints in the project:
+- ">=2.18.0-10.0.dev <3.0.0"
+  from "flutter_turntable_learning_app" at "./Users/changlifeng/Desktop/flutter_turntable_learning_app/pubspec.yaml".
+
+at:
+#0      CustomLintWorkspace._writeEnvironment (package:custom_lint/src/workspace.dart:569:9)
+#1      CustomLintWorkspace.computePubspec (package:custom_lint/src/workspace.dart:537:5)
+#2      CustomLintWorkspace.resolvePluginHost (package:custom_lint/src/workspace.dart:797:28)
+#3      SocketCustomLintServerToClientChannel._startProcess (package:custom_lint/src/v2/server_to_client_channel.dart:151:24)
+#4      SocketCustomLintServerToClientChannel.init (package:custom_lint/src/v2/server_to_client_channel.dart:110:22)
+#5      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:392:25)
+<asynchronous suspension>
+#6      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:339:9)
+<asynchronous suspension>
+#7      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#8      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:171:22)
+<asynchronous suspension>
+
+The request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+The environment "sdk" has incompatible version constraints in the project:
+- ">=2.18.0-10.0.dev <3.0.0"
+  from "flutter_turntable_learning_app" at "./Users/changlifeng/Desktop/flutter_turntable_learning_app/pubspec.yaml".
+
+at:
+#0      CustomLintWorkspace._writeEnvironment (package:custom_lint/src/workspace.dart:569:9)
+#1      CustomLintWorkspace.computePubspec (package:custom_lint/src/workspace.dart:537:5)
+#2      CustomLintWorkspace.resolvePluginHost (package:custom_lint/src/workspace.dart:797:28)
+#3      SocketCustomLintServerToClientChannel._startProcess (package:custom_lint/src/v2/server_to_client_channel.dart:151:24)
+#4      SocketCustomLintServerToClientChannel.init (package:custom_lint/src/v2/server_to_client_channel.dart:110:22)
+#5      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:392:25)
+<asynchronous suspension>
+#6      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:339:9)
+<asynchronous suspension>
+#7      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#8      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:171:22)
+<asynchronous suspension>
+
+The request analysis.setContextRoots failed with the following error:
+RequestErrorCode.PLUGIN_ERROR
+The environment "sdk" has incompatible version constraints in the project:
+- ">=2.18.0-10.0.dev <3.0.0"
+  from "flutter_turntable_learning_app" at "./Users/changlifeng/Desktop/flutter_turntable_learning_app/pubspec.yaml".
+
+at:
+#0      CustomLintWorkspace._writeEnvironment (package:custom_lint/src/workspace.dart:569:9)
+#1      CustomLintWorkspace.computePubspec (package:custom_lint/src/workspace.dart:537:5)
+#2      CustomLintWorkspace.resolvePluginHost (package:custom_lint/src/workspace.dart:797:28)
+#3      SocketCustomLintServerToClientChannel._startProcess (package:custom_lint/src/v2/server_to_client_channel.dart:151:24)
+#4      SocketCustomLintServerToClientChannel.init (package:custom_lint/src/v2/server_to_client_channel.dart:110:22)
+#5      CustomLintServer._maybeSpawnCustomLintPlugin (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:392:25)
+<asynchronous suspension>
+#6      CustomLintServer._handleAnalysisSetContextRoots.<anonymous closure> (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:339:9)
+<asynchronous suspension>
+#7      PendingOperation.run (package:custom_lint/src/async_operation.dart:22:14)
+<asynchronous suspension>
+#8      CustomLintServer._handleRequest (package:custom_lint/src/v2/custom_lint_analyzer_plugin.dart:171:22)
+<asynchronous suspension>
+
