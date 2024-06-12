@@ -1,6 +1,8 @@
-# flutter_test_app
+# flutter turntable learning app
 
-A new Flutter project.
+A small side project that I implemented while learning flutter
+
+Implementation projects include turntable animation, turntable item creation, synchronization of different paging states, etc.
 
 ## Getting Started
 
